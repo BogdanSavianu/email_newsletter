@@ -7,18 +7,18 @@ env:
 
 jobs:
   test:
-  name: Test
-  runs-on: macos-latest
-  steps:
-    - uses: actions/checkout@v3
-    - uses: dtolnay/rust-toolchain@stable
-    - uses: Swatinem/rust-cache@v2
-    - name: Install linker for macOS
-      run: |
-        brew install llvm
-        export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-    - name: Run tests
-      run: cargo test
+    name: Test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install linker for macOS
+        run: |
+          brew install llvm
+          export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+      - name: Run tests
+        run: cargo test
 
   fmt:
     name: Rustfmt
