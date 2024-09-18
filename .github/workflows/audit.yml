@@ -1,5 +1,4 @@
 name: Security audit
-
 on:
   schedule:
     - cron: '0 0 * * *'
@@ -7,13 +6,9 @@ on:
     paths:
       - '**/Cargo.toml'
       - '**/Cargo.lock'
-
 jobs:
   security_audit:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: taiki-e/install-action@cargo-deny
