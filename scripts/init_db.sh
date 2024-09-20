@@ -35,12 +35,13 @@ then
 	  -e POSTGRES_USER=${DB_USER} \
 	  -e POSTGRES_PASSWORD=${DB_PASSWORD}\
 	  -e POSTGRES_DB=${DB_NAME} \
+
 	  -p "${DB_PORT}":5432 \
+
 	  -d postgres \
+
 	  postgres -N 1000
 fi
-
-
 # Keep pinging Postgres until it's ready to accept commands
 export PGPASSWORD="${DB_PASSWORD}"
 until psql -h "${DB_HOST}" -U "${DB_USER}" -p "${DB_PORT}" -d "postgres" -c '\q'; do
