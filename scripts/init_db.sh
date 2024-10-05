@@ -44,19 +44,6 @@ done
 
 >&2 echo "Postgres is up and running on port ${DB_PORT} - running setup now!"
 
-# Grant privileges if not the default 'postgres' user
-if [ "$DB_USER" != "postgres" ]; then
-    >&2 echo "Granting necessary privileges to user ${DB_USER}"
-
-    # Connect as postgres superuser to grant necessary permissions
-    psql -h "${DB_HOST}" -U postgres -p "${DB_PORT}" -d "postgres" <<EOSQL
-        -- Grant all privileges on the database
-        GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USER};
-        -- Grant schema usage and create privileges
-        GRANT USAGE, CREATE ON SCHEMA public TO ${DB_USER};
-EOSQL
-fi
-
 # Run migrations
 DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
 export DATABASE_URL
