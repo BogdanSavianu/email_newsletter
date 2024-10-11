@@ -40,6 +40,7 @@ hex = "0.4"
 actix-web-flash-messages = { version = "0.4", features = ["cookies"] }
 serde_json = "1"
 actix-session = { version = "0.7", features = ["redis-rs-tls-session"] }
+actix-web-lab = "0.18"
 
 [dependencies.sqlx]
 version = "0.7"
@@ -68,3 +69,4 @@ tokio = { version = "1", features = ["rt", "macros"] }
 wiremock = "0.5"
 serde_json = "1"
 linkify = "0.9"
+serde_urlencoded = "0.7.1"
